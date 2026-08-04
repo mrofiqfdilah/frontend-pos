@@ -6,7 +6,7 @@ const MENU_POS = [
 ]
 
 const MENU_INV = [
-    { href: '#', label: 'Kategori', key: 'kategori' },
+    { href: '/karyawan/kategori', label: 'Kategori', key: 'kategori' },
     { href: '#', label: 'Item', key: 'item' },
     { href: '#', label: 'Rak', key: 'rak' },
 ]
@@ -110,12 +110,13 @@ function SidebarKaryawan({ sidebarOpen, onClose, active = 'dashboard' }) {
                     <div>
                         <button
                             onClick={() => toggleMenu('menuInv')}
-                            className="menu-toggle w-full flex items-center gap-3 px-3 py-2.5 rounded-xl font-semibold text-sm text-slate-600 hover:bg-blue-50"
+                            className={`nav-item menu-toggle w-full flex items-center gap-3 px-3 py-2.5 rounded-xl font-semibold text-sm text-slate-600 hover:bg-blue-50 ${defaultOpen === 'menuInv' ? 'active' : ''
+                                }`}
                         >
-                            <i className="ri-archive-2-line nav-icon text-lg text-slate-400"></i>
+                            <i className={`ri-archive-2-line nav-icon text-lg ${defaultOpen === 'menuInv' ? 'text-blue-600' : 'text-slate-400'}`}></i>
                             <span>Inventory</span>
                             <i
-                                className={`ri-arrow-right-s-line chevron ml-auto text-slate-400 ${openMenu === 'menuInv' ? 'rotate' : ''
+                                className={`ri-arrow-right-s-line chevron ml-auto ${defaultOpen === 'menuInv' ? 'text-white' : 'text-slate-400'} ${openMenu === 'menuInv' ? 'rotate' : ''
                                     }`}
                             ></i>
                         </button>
@@ -131,7 +132,7 @@ function SidebarKaryawan({ sidebarOpen, onClose, active = 'dashboard' }) {
                                 </a>
                             ))}
                         </div>
-                    </div >
+                    </div>
 
                     {/* Accounting */}
                     < div >
