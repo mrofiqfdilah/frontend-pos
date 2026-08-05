@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
 import Chart from 'chart.js/auto'
-import ChartDataLabels from 'chartjs-plugin-datalabels'
 import SidebarKaryawan from '../../components/Sidebar/SidebarKaryawan'
 import NavbarKaryawan from '../../components/Navbar/NavbarKaryawan'
 import KeripikSingkong from "../../assets/image_product/Keripik_Singkong.png"
@@ -16,7 +15,6 @@ function Home() {
     const totalWeeklySales = weeklySalesData.reduce((sum, val) => sum + val, 0)
     const totalWeeklySalesFormatted = (totalWeeklySales / 1000000).toFixed(1) + 'jt'
 
-    // Init charts
     useEffect(() => {
         const salesChart = new Chart(salesChartRef.current, {
             type: 'bar',
@@ -68,27 +66,21 @@ function Home() {
                     hoverOffset: 6
                 }]
             },
-            plugins: [ChartDataLabels],
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
                 cutout: '68%',
                 plugins: {
                     legend: { display: false },
-                    datalabels: {
-                        color: '#fff',
-                        font: { weight: 'bold', size: 11 },
-                        formatter: (value, ctx) => {
-                            const label = ctx.chart.data.labels[ctx.dataIndex]
-                            return `${label}\n${value}%`
-                        },
-                        textAlign: 'center'
+                    tooltip: {
+                        callbacks: {
+                            label: (ctx) => `${ctx.label}: ${ctx.parsed}%`
+                        }
                     }
                 }
             }
         })
 
-        // Cleanup saat komponen unmount (penting supaya chart tidak duplikat)
         return () => {
             salesChart.destroy()
             topItemsChart.destroy()
@@ -110,9 +102,7 @@ function Home() {
                     onOpenSidebar={() => setSidebarOpen(true)}
                 />
 
-                {/* Content */}
                 <main className="p-4 sm:p-6 lg:p-8 space-y-6">
-                    {/* Stat cards */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-5">
                         <div className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm">
                             <div className="flex items-start justify-between">
@@ -124,20 +114,20 @@ function Home() {
                                 </span>
                             </div>
                             <p className="text-2xl font-extrabold text-slate-900 mt-4">248</p>
-                            <p className="text-xs text-slate-400 font-semibold mt-1">Total Item</p>
+                            <p className="text-xs text-slate-400 font-semibold mt-1">Total Jenis Produk</p>
                         </div>
 
                         <div className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm">
                             <div className="flex items-start justify-between">
                                 <div className="w-11 h-11 rounded-xl bg-emerald-50 flex items-center justify-center">
-                                    <i className="ri-team-line text-emerald-600 text-xl"></i>
+                                    <i className="ri-shopping-bag-3-line text-emerald-600 text-xl"></i>
                                 </div>
                                 <span className="text-[11px] font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full flex items-center gap-0.5">
-                                    <i className="ri-checkbox-circle-line"></i>Aktif
+                                    <i className="ri-arrow-up-line"></i>8.6%
                                 </span>
                             </div>
-                            <p className="text-2xl font-extrabold text-slate-900 mt-4">12</p>
-                            <p className="text-xs text-slate-400 font-semibold mt-1">Karyawan Aktif</p>
+                            <p className="text-2xl font-extrabold text-slate-900 mt-4">302 pcs</p>
+                            <p className="text-xs text-slate-400 font-semibold mt-1">Produk Terjual Hari Ini</p>
                         </div>
 
                         <div className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm">
@@ -167,7 +157,6 @@ function Home() {
                         </div>
                     </div>
 
-                    {/* Charts */}
                     <div className="grid grid-cols-1 xl:grid-cols-3 gap-5">
                         <div className="xl:col-span-2 bg-white rounded-2xl p-5 sm:p-6 border border-slate-100 shadow-sm">
                             <div className="flex items-center justify-between mb-4">
@@ -217,7 +206,6 @@ function Home() {
                         </div>
                     </div>
 
-                    {/* Recent items table */}
                     <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
                         <div className="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-slate-100">
                             <h2 className="font-bold text-slate-800">Item Terlaris Hari Ini</h2>

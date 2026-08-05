@@ -86,11 +86,11 @@ function NavbarKaryawan({ title, subtitle, onOpenSidebar }) {
                             />
                             <div>
                                 <p className="text-sm font-bold text-slate-800">Budi Santoso</p>
-                                <p className="text-xs text-slate-400">Kasir &middot; Shift Pagi</p>
+                                <p className="text-xs text-slate-400">Kasir</p>
                             </div>
                         </div>
                         <a href="#" className="flex items-center gap-3 px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">
-                            <i className="ri-user-3-line text-slate-400"></i> Profil Saya
+                            <i className="ri-user-3-line text-slate-400"></i> Profil
                         </a>
                         <a href="#" className="flex items-center gap-3 px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">
                             <i className="ri-settings-3-line text-slate-400"></i> Pengaturan

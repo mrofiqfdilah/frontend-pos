@@ -7,13 +7,12 @@ const MENU_POS = [
 
 const MENU_INV = [
     { href: '/karyawan/kategori', label: 'Kategori', key: 'kategori' },
-    { href: '#', label: 'Item', key: 'item' },
-    { href: '#', label: 'Rak', key: 'rak' },
+    { href: '/karyawan/produk', label: 'Produk', key: 'produk' },
 ]
 
 const MENU_ACC = [
-    { href: '#', label: 'Laporan Keuntungan', key: 'laporan-keuntungan' },
-    { href: '#', label: 'Laporan Item', key: 'laporan-item' },
+    { href: '/karyawan/journal_keuangan', label: 'Journal Keuangan', key: 'journal' },
+    { href: '/karyawan/report_keuangan', label: 'Report Keuangan', key: 'report' },
 ]
 
 function SidebarKaryawan({ sidebarOpen, onClose, active = 'dashboard' }) {
@@ -135,15 +134,17 @@ function SidebarKaryawan({ sidebarOpen, onClose, active = 'dashboard' }) {
                     </div>
 
                     {/* Accounting */}
-                    < div >
+                    {/* Accounting */}
+                    <div>
                         <button
                             onClick={() => toggleMenu('menuAcc')}
-                            className="menu-toggle w-full flex items-center gap-3 px-3 py-2.5 rounded-xl font-semibold text-sm text-slate-600 hover:bg-blue-50"
+                            className={`nav-item menu-toggle w-full flex items-center gap-3 px-3 py-2.5 rounded-xl font-semibold text-sm text-slate-600 hover:bg-blue-50 ${defaultOpen === 'menuAcc' ? 'active' : ''
+                                }`}
                         >
-                            <i className="ri-file-chart-2-line nav-icon text-lg text-slate-400"></i>
+                            <i className={`ri-file-chart-2-line nav-icon text-lg ${defaultOpen === 'menuAcc' ? 'text-blue-600' : 'text-slate-400'}`}></i>
                             <span>Accounting</span>
                             <i
-                                className={`ri-arrow-right-s-line chevron ml-auto text-slate-400 ${openMenu === 'menuAcc' ? 'rotate' : ''
+                                className={`ri-arrow-right-s-line chevron ml-auto ${defaultOpen === 'menuAcc' ? 'text-white' : 'text-slate-400'} ${openMenu === 'menuAcc' ? 'rotate' : ''
                                     }`}
                             ></i>
                         </button>
@@ -157,10 +158,9 @@ function SidebarKaryawan({ sidebarOpen, onClose, active = 'dashboard' }) {
                                 >
                                     {item.label}
                                 </a>
-                            ))
-                            }
-                        </div >
-                    </div >
+                            ))}
+                        </div>
+                    </div>
                 </nav >
 
                 {/* Bottom help card */}

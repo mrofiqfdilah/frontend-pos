@@ -17,7 +17,7 @@ function Login() {
             return
         }
 
-        if (username === 'karyawan') {
+        if (username === 'budi') {
             navigate('/karyawan/home')
         } else if (username === 'owner') {
             navigate('/owner/home')

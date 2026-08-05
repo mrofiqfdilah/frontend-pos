@@ -129,7 +129,7 @@ function Kasir() {
                         onClick={() => navigate(-1)}
                         className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-blue-100 shadow-sm text-sm font-bold text-slate-600 hover:text-blue-600 hover:border-blue-300 transition-colors"
                     >
-                        <i className="ri-arrow-left-line text-lg"></i>
+                        <i className="ri-arrow-left-s-line text-lg"></i>
                         <span>Kembali</span>
                     </button>
 
